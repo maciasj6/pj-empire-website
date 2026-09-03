@@ -281,7 +281,9 @@
     .hs-tag{ position:absolute; right:18px; bottom:14px; z-index:3; font-size:12px; color:#9aa3b2; }
   
     /* title sequence: logo on black -> dissolve into the drone montage */
-    .hfv{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%; }
+    .hfv{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%;
+      opacity:0; transition:opacity 1.1s ease; }
+    .hfv.rolling{ opacity:1; }
     .hf-veil{ position:absolute; inset:0; z-index:4; background:#050608; display:flex; align-items:center; justify-content:center;
       pointer-events:none; }
     .hfmono{ position:relative; line-height:0; }
@@ -558,14 +560,24 @@
   try{ var se=v.querySelector('source'); if(se) se.addEventListener('error',toStill); }catch(_s){}
   v.addEventListener('stalled',function(){
     var t0=v?v.currentTime:0;
-    setTimeout(function(){ if(v&&!v.paused&&!v.ended&&v.currentTime===t0) toStill(); },1500);
+    setTimeout(function(){ if(v&&t0>0&&!v.paused&&!v.ended&&v.currentTime===t0) toStill(); },4000);
   });
+  v.addEventListener('playing',function(){ if(v) v.classList.add('rolling'); });
+  v.addEventListener('canplay',function(){ kick(); });
+  // low-power mode blocks autoplay: retry on the user's first touch instead of giving up
+  var retried=false;
+  function touchRetry(){ if(retried) return; retried=true; kick(); }
+  document.addEventListener('touchstart',touchRetry,{ once:true, passive:true });
+  document.addEventListener('click',touchRetry,{ once:true });
   function kick(){
     if(!v||!started) return;
     var p; try{ p=v.play(); }catch(_p){ toStill(); return; }
-    if(p&&p.catch) p.catch(function(err){ if(err&&err.name==='AbortError') return; toStill(); });
+    if(p&&p.catch) p.catch(function(err){
+      if(err&&(err.name==='AbortError'||err.name==='NotAllowedError')) return; // transient / autoplay-blocked (touch retries)
+      toStill();
+    });
   }
-  setTimeout(function(){ if(v&&(v.readyState<2||(v.paused&&!document.hidden))) toStill(); },6800);
+  // no loading deadline: the Ivy still holds the frame until the film is buffered, then it fades in
   document.addEventListener('visibilitychange',function(){
     if(!v) return;
     if(document.hidden){ try{ v.pause(); }catch(_h){} } else kick();
