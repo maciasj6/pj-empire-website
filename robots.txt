@@ -1,2 +1,3 @@
+# PRELAUNCH: keep crawlers out. Replace with Allow at launch.
 User-agent: *
-Allow: /
+Disallow: /
