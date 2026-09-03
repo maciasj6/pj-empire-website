@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Santa Rosa Academy &mdash; PJ Empire Construction</title>
+<meta name="description" content="Santa Rosa Academy, Menifee: classroom building with a crane-set roof truss package, framed by PJ Empire Construction." />
+<meta name="theme-color" content="#07080b" />
+<link rel="icon" type="image/png" href="../assets/monogram.png" />
+<meta property="og:title" content="Santa Rosa Academy — PJ Empire Construction" />
+<meta property="og:image" content="../assets/g-sr-1.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{ --bg:#07080b; --mist:#0d0f14; --ink:#f2f4f8; --slate:#a2abb8; --haze:#717a88; --line:#1e242e; --navy:#5a93ea; }
+*{ box-sizing:border-box; margin:0; }
+body{ background:var(--bg); color:var(--ink); font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; }
+a{ color:inherit; }
+.nav{ position:fixed; top:0; left:0; right:0; z-index:90; display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; background:linear-gradient(to bottom, rgba(5,7,10,.8), rgba(5,7,10,0)); }
+.nav img{ height:44px; filter:brightness(0) invert(1); display:block; }
+.back{ font-size:14px; font-weight:700; text-decoration:none; color:var(--ink); background:rgba(10,13,18,.6);
+  border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:9px 18px; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.hero{ position:relative; height:72svh; min-height:480px; overflow:hidden; background:#050608; }
+.hero video,.hero img.hbg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.hero .scrim{ position:absolute; inset:0; background:linear-gradient(to top, rgba(5,7,10,.94) 0%, rgba(5,7,10,.45) 34%, rgba(5,7,10,.1) 60%),
+  linear-gradient(to bottom, rgba(5,7,10,.6) 0%, rgba(5,7,10,0) 20%); }
+.hero .head{ position:absolute; left:0; right:0; bottom:34px; padding:0 22px; text-align:center; }
+.kicker{ font-size:12.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); margin-bottom:8px; }
+h1{ font-size:clamp(32px,5.6vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1.05; }
+.chips{ display:flex; gap:9px; flex-wrap:wrap; justify-content:center; margin-top:16px; }
+.chip{ border:1px solid rgba(255,255,255,.16); background:rgba(10,13,18,.55); border-radius:999px; padding:7px 15px;
+  font-size:13px; color:var(--slate); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+.chip b{ color:var(--ink); font-weight:750; }
+.wrap{ max-width:760px; margin:0 auto; padding:58px 22px 8px; }
+.wrap h2{ font-size:14px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; color:var(--haze); margin-bottom:14px; }
+.wrap p{ color:var(--slate); font-size:17px; line-height:1.65; margin-bottom:14px; }
+.wrap p b{ color:var(--ink); }
+.scopelist{ list-style:none; padding:0; margin:6px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:9px 18px; }
+.scopelist li{ color:var(--slate); font-size:15.5px; padding-left:20px; position:relative; }
+.scopelist li::before{ content:"\2713"; position:absolute; left:0; color:var(--navy); font-weight:800; }
+@media (max-width:560px){ .scopelist{ grid-template-columns:1fr; } }
+.gallery{ max-width:1100px; margin:44px auto 0; padding:0 16px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.gallery img{ width:100%; height:100%; object-fit:cover; border-radius:16px; border:1px solid var(--line); display:block; aspect-ratio:16/10; }
+.gallery img.full{ grid-column:1/-1; aspect-ratio:21/9; }
+@media (max-width:640px){ .gallery{ grid-template-columns:1fr; } .gallery img,.gallery img.full{ aspect-ratio:16/10; } }
+.cta{ text-align:center; padding:70px 22px 84px; }
+.cta h3{ font-size:clamp(24px,3.6vw,34px); font-weight:800; letter-spacing:-.02em; margin-bottom:20px; }
+.pill{ display:inline-block; background:#f2f4f8; color:#0b0d10; font-weight:800; font-size:16px; border-radius:999px;
+  padding:15px 34px; text-decoration:none; }
+footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:center; color:var(--haze); font-size:12.5px; line-height:1.7; }
+</style>
+</head>
+<body>
+<nav class="nav"><a href="../index.html"><img src="../assets/logo.png" alt="PJ Empire Construction" /></a>
+  <a class="back" href="../index.html#work">&#8592; All projects</a></nav>
+<header class="hero">
+  <video muted playsinline autoplay loop preload="metadata" poster="../assets/g-sr-1.jpg" aria-hidden="true">
+    <source src="../assets/proj-santarosa.mp4" type="video/mp4" /></video>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="head"><div class="kicker">Education &middot; Menifee</div><h1>Santa Rosa Academy</h1>
+    <div class="chips"><span class="chip">Type<b> Classroom building</b></span><span class="chip">Roof<b> Crane-set trusses</b></span><span class="chip">Status<b> Delivered</b></span></div></div>
+</header>
+<main>
+  <div class="wrap"><h2>The work</h2><p>A new classroom building for Santa Rosa Academy&rsquo;s Menifee campus &mdash; framed by PJ Empire while school stayed in session next door.</p><p>The roof is the signature: a full field of pre-fabricated trusses flown in by crane and set by our crews, sequenced so every pick landed on schedule. From first plate to sheathed deck, the structure came together in one continuous push.</p>
+    <h2 style="margin-top:34px">Scope</h2>
+    <ul class="scopelist"><li>All wood wall framing</li><li>Roof truss package, crane-set</li><li>Roof &amp; floor sheathing</li><li>Shear panel &amp; hardware</li><li>Campus-adjacent site logistics</li><li>Delivered on schedule</li></ul>
+  </div>
+  <div class="gallery"><img src="../assets/g-sr-1.jpg" alt="Crane boom over the Santa Rosa Academy truss field" loading="lazy" decoding="async" class="full" /><img src="../assets/g-sr-2.jpg" alt="Roof deck nearing completion" loading="lazy" decoding="async" /><img src="../assets/g-sr-3.jpg" alt="The finished building on campus" loading="lazy" decoding="async" /></div>
+  <div class="cta"><h3>Have a project like this one?</h3><a class="pill" href="../index.html#contact">Request a bid</a></div>
+</main>
+<footer>PJ Empire Construction, Inc. &middot; (714) 277-6040 &middot; general@pjempire.co<br/>CSLB #1024195 &middot; DIR #1000740151</footer>
+<script>
+(function(){
+  var v=document.querySelector('.hero video'); if(!v) return;
+  function still(){ try{ if(v.parentNode) v.parentNode.removeChild(v); }catch(_e){}
+    var i=document.createElement('img'); i.className='hbg'; i.src=v.getAttribute('poster');
+    document.querySelector('.hero').prepend(i); }
+  v.addEventListener('error',still);
+  var p; try{ p=v.play(); }catch(_p){ still(); return; }
+  if(p&&p.catch) p.catch(function(e){ if(e&&e.name!=='AbortError') still(); });
+})();
+</script>
+</body>
+</html>
