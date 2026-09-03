@@ -447,9 +447,9 @@
       <p class="sub2">Santa Rosa Academy from the air — dive into the truss field and find our crews setting them.</p>
     </div>
     <div class="vstage reveal">
-      <video id="rampvid" class="vmedia" autoplay muted loop playsinline preload="metadata"
+      <video id="rampvid" class="vmedia" muted loop playsinline preload="none"
         poster="assets/craft-poster.jpg" data-alt="Santa Rosa Academy truss field from the air">
-        <source src="assets/craft.mp4" type="video/mp4" /></video>
+        <source data-src="assets/craft.mp4" type="video/mp4" /></video>
     </div>
   </div>
 </section>
@@ -732,12 +732,12 @@ function robustVideo(id){
       toPoster();
     });
   }
-  (function wd(){ // 2.5s canplay watchdog (re-arms while hidden or scrolled away)
+  (function wd(){ // patient watchdog: poster only if NOTHING has arrived after 15s in view
     setTimeout(function(){
       if(swapped) return;
-      if(document.hidden || ioPaused){ wd(); return; }
-      if(v.readyState<2 || v.paused) toPoster();
-    },2500);
+      if(document.hidden || ioPaused || v.readyState>=1){ if(!swapped&&v.paused&&!document.hidden&&!ioPaused) kick(); wd(); return; }
+      toPoster();
+    },15000);
   })();
   if('IntersectionObserver' in window && v.parentNode){
     new IntersectionObserver(function(es){
@@ -754,7 +754,23 @@ function robustVideo(id){
   });
   kick();
 }
-robustVideo('rampvid');
+(function(){
+  var v=document.getElementById('rampvid'); if(!v){ return; }
+  function arm(){
+    var s=v.querySelector('source');
+    if(s&&s.dataset.src&&!s.src){ s.src=s.dataset.src; try{ v.load(); }catch(_l){} }
+    robustVideo('rampvid');
+  }
+  if('IntersectionObserver' in window){
+    try{
+      new IntersectionObserver(function(es,io){
+        for(var i=0;i<es.length;i++) if(es[i].isIntersecting){ io.disconnect(); arm(); return; }
+      },{rootMargin:'900px'}).observe(v);
+      return;
+    }catch(_o){}
+  }
+  arm();
+})();
 
 /* ================= scroll-scrubbed hero film ================= */
 /* The drone move is 50 pre-decoded frames; scroll position IS the playhead.
