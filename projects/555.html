@@ -85,5 +85,15 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
   <div class="cta"><h3>Have a project like this one?</h3><a class="pill" href="../index.html#contact">Request a bid</a></div>
 </main>
 <footer>PJ Empire Construction, Inc. &middot; (714) 277-6040 &middot; general@pjempire.co<br/>CSLB #1024195 &middot; DIR #1000740151</footer>
+<script>
+(function(){
+  try{
+    var d=JSON.stringify({ page: location.pathname + location.search, ref: document.referrer || '' });
+    var url='https://pj-empire.netlify.app/.netlify/functions/visit';
+    if(navigator.sendBeacon){ navigator.sendBeacon(url, new Blob([d], { type: 'text/plain' })); }
+    else{ fetch(url, { method:'POST', body:d, keepalive:true }); }
+  }catch(_e){}
+})();
+</script>
 </body>
 </html>

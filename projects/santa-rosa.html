@@ -91,5 +91,15 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
   if(p&&p.catch) p.catch(function(e){ if(e&&e.name!=='AbortError') still(); });
 })();
 </script>
+<script>
+(function(){
+  try{
+    var d=JSON.stringify({ page: location.pathname + location.search, ref: document.referrer || '' });
+    var url='https://pj-empire.netlify.app/.netlify/functions/visit';
+    if(navigator.sendBeacon){ navigator.sendBeacon(url, new Blob([d], { type: 'text/plain' })); }
+    else{ fetch(url, { method:'POST', body:d, keepalive:true }); }
+  }catch(_e){}
+})();
+</script>
 </body>
 </html>
