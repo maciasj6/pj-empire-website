@@ -375,7 +375,7 @@
 <a id="top"></a>
 <section class="hero-still" id="heroStill">
   <img class="hs" src="assets/hero-ivy.jpg" alt="The Ivy, Arcadia — three-story wood-framed block by PJ Empire, from the air" />
-  <video id="hfVid" class="hfv" muted playsinline loop preload="auto" aria-hidden="true"><source src="assets/hero-film.mp4" type="video/mp4" /></video>
+  <video id="hfVid" class="hfv" muted playsinline loop preload="auto" aria-hidden="true" data-src="assets/hero-film.mp4" data-src-m="assets/hero-film-m.mp4"></video>
   <div class="hf-veil" id="hfVeil" aria-hidden="true"><div class="hfmono"><img id="hfLogo" src="assets/monogram.png" alt="PJ" /><i class="shine" aria-hidden="true"></i></div></div>
   <div class="h3scrim" aria-hidden="true"></div>
   <div class="h3copy">
@@ -560,9 +560,13 @@
   if(document.readyState!=='loading') requestAnimationFrame(go);
   else document.addEventListener('DOMContentLoaded',function(){ requestAnimationFrame(go); });
   if(!v) return;
+  // phones get the 720p cut — same film, a quarter of the download
+  try{
+    var small=Math.min(window.innerWidth,(window.screen&&screen.width)||9999)<=640;
+    v.src=v.getAttribute(small?'data-src-m':'data-src');
+  }catch(_v){ v.src=v.getAttribute('data-src'); }
   function toStill(){ try{ if(v.parentNode) v.parentNode.removeChild(v); }catch(_r){} v=null; }
   v.addEventListener('error',toStill);
-  try{ var se=v.querySelector('source'); if(se) se.addEventListener('error',toStill); }catch(_s){}
   v.addEventListener('stalled',function(){
     var t0=v?v.currentTime:0;
     setTimeout(function(){ if(v&&t0>0&&!v.paused&&!v.ended&&v.currentTime===t0) toStill(); },4000);
