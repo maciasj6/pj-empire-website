@@ -127,5 +127,22 @@ footer a{ color:var(--slate); }
   }catch(e){}
 })();
 </script>
+
+<style>
+/* Sticky mobile bid bar — phones only */
+.pjbar{display:none}
+@media (max-width:760px){
+  .pjbar{display:flex;gap:9px;position:fixed;left:0;right:0;bottom:0;z-index:300;
+    padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+    background:rgba(7,8,11,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,255,255,.12)}
+  .pjbar a{padding:14px 10px;border-radius:12px;font-weight:800;font-size:15px;
+    text-decoration:none;text-align:center;font-family:'Manrope',system-ui,sans-serif}
+  .pjbar .pjcall{flex:0 0 42%;color:#f2f4f8;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
+  .pjbar .pjbid{flex:1;background:#f2f4f8;color:#0b0d10}
+  body{padding-bottom:74px}
+}
+</style>
+<div class="pjbar" role="navigation" aria-label="Quick contact"><a class="pjcall" href="tel:+17142776040">☎ Call</a><a class="pjbid" href="../index.html#contact">Request a Bid</a></div>
 </body>
 </html>
