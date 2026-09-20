@@ -64,10 +64,38 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
 .hero img.hbg{ animation:drift 26s ease-in-out infinite alternate; }
 @keyframes drift{ from{ transform:scale(1.03); } to{ transform:scale(1.10) translate(-1.2%,1%); } }
 </style>
+<style>
+/* Top tabs — shared across the site */
+.topnav{ position:fixed; top:0; left:0; right:0; z-index:90; background:linear-gradient(to bottom, rgba(5,7,10,.86), rgba(5,7,10,.62)); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.06); }
+.tn-wide{ display:flex; align-items:center; justify-content:space-between; gap:18px; height:62px; padding:0 18px; }
+.tn-brand{ display:flex; align-items:center; }
+.tn-brand img{ height:46px; width:auto; filter:brightness(0) invert(1); display:block; }
+.tn-tabs{ display:flex; align-items:center; gap:28px; }
+.tn-tabs a{ font-family:'Manrope',system-ui,sans-serif; font-size:14.5px; font-weight:600; color:#a2abb8; text-decoration:none; padding:6px 0; border-bottom:2px solid transparent; white-space:nowrap; transition:color .15s; }
+.tn-tabs a:hover{ color:#f2f4f8; }
+.tn-tabs a.on{ color:#f2f4f8; border-bottom-color:#5a93ea; }
+.tn-bid{ font-family:'Manrope',system-ui,sans-serif; background:#f2f4f8; color:#0b0d10; padding:8px 16px; border-radius:980px; font-weight:700; font-size:14px; text-decoration:none; white-space:nowrap; }
+.tn-bid:hover{ background:#d9e5f6; color:#0b0d10; }
+@media (max-width:740px){
+  .tn-wide{ flex-wrap:wrap; height:auto; padding:8px 14px 0; }
+  .tn-brand img{ height:40px; }
+  .tn-tabs{ order:3; width:100%; overflow-x:auto; gap:22px; padding:6px 0 9px; scrollbar-width:none; }
+  .tn-tabs::-webkit-scrollbar{ display:none; }
+  .tn-tabs a{ font-size:13.5px; padding:4px 0; }
+  .tn-bid{ font-size:13px; padding:7px 13px; }
+}
+</style>
 </head>
 <body>
-<nav class="nav"><a href="../index.html"><img src="../assets/logo.png" alt="PJ Empire Construction" /></a>
-  <a class="back" href="../index.html#work">&#8592; All projects</a></nav>
+<header class="topnav" id="sitenav">
+  <div class="tn-wide">
+    <a class="tn-brand" href="../index.html" aria-label="PJ Empire Construction &mdash; home"><img src="../assets/logo.png" alt="PJ Empire Construction" /></a>
+    <nav class="tn-tabs" aria-label="Primary">
+      <a href="../index.html#about">About</a><a href="../index.html#capabilities">Services</a><a href="../index.html#work" class="on">Work</a><a href="../safety.html">Safety Pole</a><a href="../index.html#careers">Careers</a>
+    </nav>
+    <a class="tn-bid" href="../index.html#contact">Request a bid</a>
+  </div>
+</header>
 <header class="hero">
   <img class="hbg" src="../assets/g-yuc-1.jpg" alt="Yucaipa Pointe retail shell framed against the sky" style="object-position:50% 30%" />
   <div class="scrim" aria-hidden="true"></div>
@@ -96,21 +124,5 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
 })();
 </script>
 
-<style>
-/* Sticky mobile bid bar — phones only */
-.pjbar{display:none}
-@media (max-width:760px){
-  .pjbar{display:flex;gap:9px;position:fixed;left:0;right:0;bottom:0;z-index:300;
-    padding:9px 12px calc(9px + env(safe-area-inset-bottom));
-    background:rgba(7,8,11,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    border-top:1px solid rgba(255,255,255,.12)}
-  .pjbar a{padding:14px 10px;border-radius:12px;font-weight:800;font-size:15px;
-    text-decoration:none;text-align:center;font-family:'Manrope',system-ui,sans-serif}
-  .pjbar .pjcall{flex:0 0 42%;color:#f2f4f8;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
-  .pjbar .pjbid{flex:1;background:#f2f4f8;color:#0b0d10}
-  body{padding-bottom:74px}
-}
-</style>
-<div class="pjbar" role="navigation" aria-label="Quick contact"><a class="pjcall" href="tel:+17142776040">☎ Call</a><a class="pjbid" href="../index.html#contact">Request a Bid</a></div>
 </body>
 </html>
