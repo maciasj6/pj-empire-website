@@ -75,7 +75,7 @@ h1{ font-size:clamp(32px,5.6vw,58px); font-weight:800; letter-spacing:-.03em; li
 footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:center; color:var(--haze); font-size:12.5px; line-height:1.7; }
 
 /* diagram: draw-in once on load */
-.d-line{ stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 2.2s cubic-bezier(.2,.7,.2,1) forwards; }
+.d-line{ stroke-dasharray:400; stroke-dashoffset:400; animation:draw 2.2s cubic-bezier(.2,.7,.2,1) forwards; }
 .d-pole{ animation-delay:.2s; }
 .d-hll{ stroke-dasharray:600; stroke-dashoffset:600; animation:draw 1.4s cubic-bezier(.2,.7,.2,1) 1.4s forwards; }
 .d-tie{ stroke-dasharray:200; stroke-dashoffset:200; animation:draw .8s ease-out 2.4s forwards; }
@@ -89,7 +89,7 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
   <a class="back" href="index.html">&#8592; Home</a></nav>
 
 <header class="hero">
-  <svg class="diagram" viewBox="0 0 920 560" role="img" aria-label="Section through a three-story wood frame with two Safety Poles rising from the slab through the roof, a horizontal lifeline between them, and framers tied off on the top deck">
+  <svg class="diagram" viewBox="0 0 920 560" role="img" aria-label="Section through a three-story wood frame with two Safety Poles rising from the slab through the roof, a horizontal lifeline between them, framers tied off on the top deck, and the bases&rsquo; earlier positions on the floors below">
     <defs>
       <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a93ea" stop-opacity=".18"/><stop offset="1" stop-color="#5a93ea" stop-opacity="0"/></linearGradient>
     </defs>
@@ -115,19 +115,27 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
     <!-- glow at the top deck where the crew works -->
     <rect x="140" y="58" width="640" height="110" fill="url(#fade)"/>
     <!-- safety poles -->
+    <!-- previous base positions: slab, then the 2nd-floor deck (faded: the base has already moved up) -->
+    <g fill="none" stroke="#5a93ea" stroke-opacity=".28" stroke-width="2" stroke-dasharray="5 5">
+      <rect x="252" y="488" width="36" height="12" rx="2"/><rect x="632" y="488" width="36" height="12" rx="2"/>
+      <rect x="252" y="368" width="36" height="12" rx="2"/><rect x="632" y="368" width="36" height="12" rx="2"/>
+      <rect x="252" y="248" width="36" height="12" rx="2"/><rect x="632" y="248" width="36" height="12" rx="2"/>
+      <path d="M270,486V400 M650,486V400 M270,366V280 M650,366V280 M270,246V180 M650,246V180" stroke-dasharray="3 6"/>
+    </g>
+    <!-- poles: on the current top deck only -->
     <g stroke="#5a93ea" stroke-width="5" stroke-linecap="round" fill="none">
-      <path class="d-line d-pole" d="M270,500V44"/>
-      <path class="d-line d-pole" d="M650,500V44"/>
+      <path class="d-line d-pole" d="M270,158V44"/>
+      <path class="d-line d-pole" d="M650,158V44"/>
     </g>
-    <!-- section joints on the poles (10' sections) -->
+    <!-- section joint (10' sections) -->
     <g stroke="#7dabf0" stroke-width="2">
-      <path d="M262,400H278 M262,300H278 M262,200H278 M262,100H278 M642,400H658 M642,300H658 M642,200H658 M642,100H658"/>
+      <path d="M262,100H278 M642,100H658"/>
     </g>
-    <!-- bases -->
+    <!-- bases, bolted to the top deck -->
     <g fill="#5a93ea">
-      <rect x="252" y="490" width="36" height="12" rx="2"/><rect x="632" y="490" width="36" height="12" rx="2"/>
+      <rect x="252" y="150" width="36" height="12" rx="2"/><rect x="632" y="150" width="36" height="12" rx="2"/>
     </g>
-    <g fill="#07080b"><circle cx="258" cy="496" r="2"/><circle cx="282" cy="496" r="2"/><circle cx="638" cy="496" r="2"/><circle cx="662" cy="496" r="2"/></g>
+    <g fill="#07080b"><circle cx="258" cy="156" r="2"/><circle cx="282" cy="156" r="2"/><circle cx="638" cy="156" r="2"/><circle cx="662" cy="156" r="2"/></g>
     <!-- T-sections + D-rings -->
     <g stroke="#7dabf0" stroke-width="4" stroke-linecap="round" fill="none">
       <path d="M248,50H292 M628,50H672"/>
@@ -152,34 +160,35 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
       <text x="200" y="36">SAFETY POLE</text>
       <text x="430" y="36" text-anchor="middle">HORIZONTAL LIFELINE</text>
       <text x="676" y="36">SAFETY POLE</text>
-      <text x="292" y="454" text-anchor="end">BASE, BOLTED TO SLAB</text>
-      <text x="672" y="454">10&#8242; SECTIONS, STACKED</text>
+      <text x="240" y="196" text-anchor="end">BASE, BOLTED TO THE DECK</text>
+      <text x="680" y="196">MOVES UP EVERY FLOOR</text>
+      <text x="240" y="470" text-anchor="end">PREVIOUS POSITIONS</text>
     </g>
   </svg>
   <div class="head">
     <div class="kicker">Safety &middot; Fall protection</div>
     <h1>Tied off from the slab up.</h1>
-    <p class="lead">PJ Empire runs the <b style="color:var(--ink)">Safety Pole</b> system on our framing jobs. Engineered anchorage that rises with the building, so our crews clip in where the work actually happens: decks, walls, trusses, sheathing.</p>
-    <div class="chips"><span class="chip">System<b> Safety Pole</b></span><span class="chip">Anchorage<b> Slab through roof</b></span><span class="chip">Reach<b> Up to 27&#8242;</b></span><span class="chip">Standard<b> OSHA 1926 Subpart M</b></span></div>
+    <p class="lead">PJ Empire runs the <b style="color:var(--ink)">Safety Pole</b> system on our framing jobs. Engineered anchorage that moves up with the building, one framed deck at a time, so our crews clip in where the work actually happens: decks, walls, trusses, sheathing.</p>
+    <div class="chips"><span class="chip">System<b> Safety Pole</b></span><span class="chip">Anchorage<b> Moves up every floor</b></span><span class="chip">Reach<b> Up to 27&#8242;</b></span><span class="chip">Standard<b> OSHA 1926 Subpart M</b></span></div>
   </div>
 </header>
 
 <main>
   <div class="wrap"><h2>What it is</h2>
-    <p>Fall protection on a wood frame has one hard problem: <b>there is nothing to tie off to</b> until the building is built. Guardrails go up after the deck, and by then the exposure is over. The Safety Pole solves the sequence. Steel bases bolt to the slab before the first wall stands, pole sections stack floor by floor as the frame climbs, and a horizontal lifeline runs between the poles above the top deck. The anchorage is already there when the crew gets there.</p>
+    <p>Fall protection on a wood frame has one hard problem: <b>there is nothing to tie off to</b> until the building is built. Guardrails go up after the deck, and by then the exposure is over. The Safety Pole solves the sequence. Steel bases bolt down before the first wall stands, and each time a floor deck is framed the bases move up onto it and the poles go back up. A horizontal lifeline runs between the poles above whatever deck the crew is working on. The anchorage is always one floor ahead of the exposure.</p>
     <p>The system is made by Safety Pole, a California company that has been at it since 2004. It is modular: one pole works as a single anchor point, two poles carry a lifeline, and the whole kit moves to the next building when the roof is on.</p>
   </div>
 
   <div class="steps">
-    <div class="step"><div class="n">01</div><h3>Bases on the slab</h3><p>Two steel bases anchored to the foundation with &frac12;&#8243; concrete anchors, set at layout before framing starts.</p></div>
-    <div class="step"><div class="n">02</div><h3>Poles climb with the frame</h3><p>10&#8242; sections stack as each floor goes up, to 27&#8242;. 5&#8242; sections trim the last lift. A floor plate adapts the base to a wood subfloor.</p></div>
+    <div class="step"><div class="n">01</div><h3>Bases at the first deck</h3><p>Two steel bases anchored at layout before framing starts: &frac12;&#8243; concrete anchors on a slab, the floor plate on a wood subfloor.</p></div>
+    <div class="step"><div class="n">02</div><h3>Bases move up with each floor</h3><p>When a deck is framed, the bases relocate onto it and the poles go back up. 10&#8242; sections reach 27&#8242; from wherever the base sits; 5&#8242; sections trim the last lift.</p></div>
     <div class="step"><div class="n">03</div><h3>Lifeline across the top</h3><p>T-sections with D-rings cap the poles. A horizontal lifeline spans between them, tied back with cables so it holds where the deck is open.</p></div>
     <div class="step"><div class="n">04</div><h3>Clip in and frame</h3><p>Harness and self-retracting lifeline at every phase above six feet: floor decks, wall raising, truss setting, sheathing. Comes down when the roof is dried in.</p></div>
   </div>
 
   <div class="why">
-    <div><h3>Anchorage where the work is</h3><p>Not at the edge of the building. Over the deck, above the crew, moving up one floor at a time with the framing.</p></div>
-    <div><h3>Nothing slows down</h3><p>The poles go in with layout and stack in minutes per floor. Crews tie off and keep the rhythm the schedule was built on.</p></div>
+    <div><h3>Anchorage where the work is</h3><p>Not at the edge of the building. Over the deck, above the crew, relocated to each new floor as it is framed.</p></div>
+    <div><h3>Nothing slows down</h3><p>The bases go in with layout and move up in minutes per floor. Crews tie off and keep the rhythm the schedule was built on.</p></div>
     <div><h3>Above the six-foot rule</h3><p>OSHA's construction standard requires fall protection at six feet. The Safety Pole gives our people an engineered tie-off point at every height in between.</p></div>
   </div>
 
@@ -191,7 +200,7 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
       <li><b>2 T-sections</b> &mdash; D-rings for the lifeline</li>
       <li><b>6 shoes</b> &mdash; 2&times;4 and 2&times;6 connections</li>
       <li><b>6 tie-back cables</b> and <b>6 pullers</b></li>
-      <li><b>Raised floor plate</b> &mdash; for wood subfloors</li>
+      <li><b>Raised floor plate</b> &mdash; mounts the base on a wood subfloor</li>
       <li><b>Harness and SRL</b> per framer, PJ-issued</li>
     </ul>
     <p class="fine">Component list and heights per the manufacturer&rsquo;s technical specs and installation guide. Product details at <a href="https://safetypole.com" rel="noopener" target="_blank">safetypole.com</a>. PJ Empire is a user of the system, not a reseller.</p>
