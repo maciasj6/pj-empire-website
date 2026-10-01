@@ -60,6 +60,19 @@ h1{ font-size:clamp(32px,5.6vw,58px); font-weight:800; letter-spacing:-.03em; li
 .why p{ color:var(--slate); font-size:14.5px; line-height:1.55; }
 @media (max-width:760px){ .why{ grid-template-columns:1fr; } }
 
+/* On the job: drone film of the system in use */
+.film{ max-width:1100px; margin:52px auto 0; padding:0 16px; }
+.film h2{ font-size:14px; font-weight:750; letter-spacing:.14em; text-transform:uppercase; color:var(--haze); margin-bottom:14px; text-align:center; }
+.film .lead2{ color:var(--slate); font-size:17px; line-height:1.65; max-width:760px; margin:0 auto 22px; text-align:center; }
+.film .lead2 b{ color:var(--ink); }
+.fstage{ position:relative; border-radius:18px; overflow:hidden; background:var(--mist); border:1px solid var(--line); aspect-ratio:16/9; }
+.fstage video{ width:100%; height:100%; object-fit:cover; display:block; background:#000; }
+.fcap{ position:absolute; left:0; right:0; bottom:0; padding:38px 18px 14px; font-size:13.5px; color:var(--ink);
+  background:linear-gradient(to top, rgba(5,7,10,.78), rgba(5,7,10,0)); pointer-events:none; }
+.fcap b{ font-weight:800; }
+.fgrid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+@media (max-width:760px){ .fgrid{ grid-template-columns:1fr; } .film{ margin-top:40px; } }
+
 .kit{ list-style:none; padding:0; margin:6px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:9px 18px; }
 .kit li{ color:var(--slate); font-size:15.5px; padding-left:20px; position:relative; }
 .kit li b{ color:var(--ink); font-weight:700; }
@@ -122,6 +135,16 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
     <p>The system is made by Safety Pole, a California company that has been at it since 2004. It is modular: one pole works as a single anchor point, two poles carry a lifeline, and the whole kit moves to the next building when the roof is on.</p>
   </div>
 
+  <div class="film">
+    <h2>On the job</h2>
+    <p class="lead2">Drone footage from one of our wood-frame jobs: the <b>poles standing above the deck</b>, the lifeline across the top, and every framer clipped in while the trusses and sheathing go on.</p>
+    <div class="fstage"><video class="spv" muted loop playsinline preload="none" poster="assets/safety-pole-2-poster.jpg" data-src="assets/safety-pole-2.mp4" aria-label="Sheathing the roof deck, clipped in to the lifeline overhead"></video><div class="fcap">Sheathing the roof deck, clipped in to the lifeline overhead</div></div>
+    <div class="fgrid">
+      <div class="fstage"><video class="spv" muted loop playsinline preload="none" poster="assets/safety-pole-1-poster.jpg" data-src="assets/safety-pole-1.mp4" aria-label="The truss field under the poles and lifeline"></video><div class="fcap">The truss field under the poles and lifeline</div></div>
+      <div class="fstage"><video class="spv" muted loop playsinline preload="none" poster="assets/safety-pole-3-poster.jpg" data-src="assets/safety-pole-3.mp4" aria-label="Setting roof framing with the lifeline strung above the deck"></video><div class="fcap">Setting roof framing with the lifeline strung above the deck</div></div>
+    </div>
+  </div>
+
   <div class="steps">
     <div class="step"><div class="n">01</div><h3>Bases at the first deck</h3><p>Two steel bases anchored at layout before framing starts: &frac12;&#8243; concrete anchors on a slab, the floor plate on a wood subfloor.</p></div>
     <div class="step"><div class="n">02</div><h3>Bases move up with each floor</h3><p>When a deck is framed, the bases relocate onto it and the poles go back up. The poles only ever need to stand above the deck being framed, so there is no limit on how tall the building can be.</p></div>
@@ -160,6 +183,21 @@ footer{ border-top:1px solid var(--line); padding:26px 22px 40px; text-align:cen
     if(navigator.sendBeacon){ navigator.sendBeacon(url, new Blob([d], { type: 'text/plain' })); }
     else{ fetch(url, { method:'POST', body:d, keepalive:true }); }
   }catch(_e){}
+})();
+</script>
+
+<script>
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video.spv')); if(!vids.length) return;
+  var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function arm(v){ if(v.src) return; v.src=v.getAttribute('data-src'); v.load(); }
+  function play(v){ arm(v); var p=v.play(); if(p && p.catch) p.catch(function(){ v.controls=true; }); }
+  if(reduce){ vids.forEach(function(v){ v.controls=true; v.preload='metadata'; }); return; }
+  if(!('IntersectionObserver' in window)){ vids.forEach(play); return; }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ play(e.target); } else if(e.target.src){ e.target.pause(); } });
+  },{ rootMargin:'120px 0px', threshold:0.25 });
+  vids.forEach(function(v){ io.observe(v); v.addEventListener('click', function(){ v.paused ? play(v) : v.pause(); }); });
 })();
 </script>
 
